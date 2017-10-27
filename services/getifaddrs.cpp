@@ -26,6 +26,7 @@
  */
 
 #include "config.h"
+#include "logging.h"
 
 #ifndef HAVE_IFADDRS_H
 
