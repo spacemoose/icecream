@@ -55,7 +55,7 @@ matrix:
     script:
       - mkdir build
       - cd build
-      - cmake -DBUILD_EXPIRIMENTAL ..
+      - cmake -DBUILD_EXPIRIMENTAL=true ..
       - make -j 4
       - echo "tests not yet attempted"
   allow_failures:
