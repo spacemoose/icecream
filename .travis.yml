@@ -7,6 +7,8 @@ script:
   - cat config.h
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then make test; fi
 
+env: # important!
+
 matrix:
   include:
   - os: linux
@@ -48,9 +50,6 @@ matrix:
     before_install:
       - brew update
       - brew install lzo docbook2x
-  allow_failures:
-  - compiler: clang
-    env: BUILD_TYPE=lsan
   - compiler: gcc
     env: BUILD_TYPE=cmake
     script:
@@ -59,6 +58,11 @@ matrix:
       - cmake -DBUILD_EXPIRIMENTAL ..
       - make -j 4
       - echo "tests not yet attempted"
+  allow_failures:
+  - compiler: clang
+    env: BUILD_TYPE=lsan
+  - compiler: gcc
+    env: BUILD_TYPE=cmake
 
 before_script:
   - |
