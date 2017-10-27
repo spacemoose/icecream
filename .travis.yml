@@ -4,28 +4,8 @@ script:
   - ./autogen.sh
   - ./configure --prefix=$PWD/_inst
   - make
-  - |
-        if test "$TRAVIS_OS_NAME" = "linux"; then
-            strict="-strict"
-            if test -n "$VALGRIND"; then
-                # See tests/README.
-                sudo /sbin/setcap cap_sys_chroot+ep /usr/lib/valgrind/memcheck-amd64-linux
-            fi
-            make test${strict} VALGRIND=$VALGRIND TESTCC=/usr/bin/gcc TESTCXX=/usr/bin/g++
-            if test $? -ne 0; then
-                exit 1
-            fi
-            # Only the clang(-3.4) package provides /usr/bin/clang, but this path is hardcoded in icecream.
-            # So for now make icecream use the newer version provided by Travis.
-            sudo ln -s `which clang` /usr/bin/clang
-            sudo ln -s `which clang++` /usr/bin/clang++
-            make test${strict} VALGRIND=$VALGRIND TESTCC=/usr/bin/clang TESTCXX=/usr/bin/clang++
-        elif test "$TRAVIS_OS_NAME" = "osx"; then
-            if test -n "$STRICTTESTS"; then
-                strict="-strict"
-            fi
-            make test${strict} TESTCC=clang TESTCXX=clang++
-        fi
+  - cat config.h
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then make test; fi
 
 matrix:
   include:
@@ -64,7 +44,21 @@ matrix:
     compiler: clang
     env: BUILD_TYPE=ubsan
     dist: trusty
+  - os: osx
+    before_install:
+      - brew update
+      - brew install lzo docbook2x
   allow_failures:
+  - compiler: clang
+    env: BUILD_TYPE=lsan
+  - compiler: gcc
+    env: BUILD_TYPE=cmake
+    script:
+      - mkdir build
+      - cd build
+      - cmake -DBUILD_EXPIRIMENTAL ..
+      - make -j 4
+      - echo "tests not yet attempted"
 
 before_script:
   - |
@@ -94,6 +88,8 @@ before_script:
 addons:
   apt:
     packages:
+    - clang
+    - cmake
     - gcc
     - libcap-ng-dev
     - libcap-ng-utils
