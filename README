@@ -19,6 +19,20 @@ when extending the $PATH variable).
 
 The documentation is maintained in README.md for the time being.
 
+Host to build/install with cmake
+================================
+
+WARNING, the cmake build is a work in progress, it probably doesn't even 
+complete. Even if you somehow get a successful build that does not mean that
+the build actually will work. There are many known issues.  Bug reports will
+not be accepted.
+
+cd icecream
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/opt/icecream -DBUILD_EXPIRIMENTAL=true ..
+make -j 4
+
 How to contribute
 =================
 

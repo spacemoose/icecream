@@ -33,6 +33,10 @@ add_executable(icecc
     util.h
 )
 
+target_compile_definitions(icecc
+  PRIVATE
+    "-DPLIBDIR=\"${CMAKE_INSTALL_PREFIX}/libexec/icecc\"")
+
 target_link_libraries(icecc
   services
 )

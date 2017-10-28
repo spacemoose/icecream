@@ -29,9 +29,8 @@ find_package(Libcap-ng)
 find_package(LZO REQUIRED)
 find_package(TAR REQUIRED)
 
-if(NOT DEFINED BINDIR)
-  set(BINDIR "/opt/icecream/bin")
-endif()
+set(BINDIR "${CMAKE_INSTALL_PREFIX}/bin")
+
 
 configure_file(cmake-config.h.in ${PROJECT_BINARY_DIR}/config.h @ONLY)
 
