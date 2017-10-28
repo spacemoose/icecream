@@ -33,3 +33,8 @@ add_executable(iceccd
 target_link_libraries(iceccd
   services
 )
+
+if(Libcap-ng_FOUND)
+  target_link_libraries(iceccd
+    Libcap-ng::Libcap-ng)
+endif()

@@ -36,6 +36,12 @@ add_library(services STATIC
 target_link_libraries(services
     PRIVATE
         LZO::lzo)
+        
+if(Libcap-ng_FOUND)
+  target_link_libraries(services
+    PRIVATE
+    Libcap-ng::Libcap-ng)
+endif()
 
 target_include_directories(services PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
