@@ -25,7 +25,7 @@ SET(CMAKE_MODULE_PATH
 set(VERSION "1.2-alpba")
 set(RUNDIR "/opt/icecream/var/run")
 
-find_package(LibCap-ng)
+find_package(Libcap-ng)
 find_package(LZO REQUIRED)
 find_package(TAR REQUIRED)
 
