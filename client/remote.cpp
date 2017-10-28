@@ -52,7 +52,7 @@
 #include "tempfile.h"
 #include "md5.h"
 #include "util.h"
-#include "services/util.h"
+#include "../services/util.h"
 
 #ifndef O_LARGEFILE
 #define O_LARGEFILE 0
