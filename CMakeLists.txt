@@ -16,7 +16,7 @@
 
 cmake_minimum_required(VERSION 3.7)
 
-project(icecc LANGUAGES CXX)
+project(icecc LANGUAGES CXX C)
 
 SET(CMAKE_MODULE_PATH
   ${CMAKE_CURRENT_SOURCE_DIR}/Modules
