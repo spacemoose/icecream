@@ -19,28 +19,40 @@ cmake_minimum_required(VERSION 3.7)
 project(icecc LANGUAGES CXX C)
 
 SET(CMAKE_MODULE_PATH
-  ${CMAKE_CURRENT_SOURCE_DIR}/Modules
-  ${CMAKE_MODULE_PATH})
+    ${CMAKE_CURRENT_SOURCE_DIR}/Modules
+    ${CMAKE_MODULE_PATH})
 
-set(VERSION "1.2-alpba")
-set(RUNDIR "/opt/icecream/var/run")
+set(VERSION "1.2-alpha")
+if(NOT DEFINED RUNDIR)
+    set(RUNDIR "/opt/icecream/var/run")
+endif()
+if(NOT DEFINED BINDIR)
+    set(BINDIR "${CMAKE_INSTALL_PREFIX}/bin")
+endif()
 
 find_package(Libcap-ng)
 find_package(LZO REQUIRED)
 find_package(TAR REQUIRED)
-
-set(BINDIR "${CMAKE_INSTALL_PREFIX}/bin")
-
 
 configure_file(cmake-config.h.in ${PROJECT_BINARY_DIR}/config.h @ONLY)
 
 include_directories(${PROJECT_BINARY_DIR})
 
 add_subdirectory(client)
+add_subdirectory(compilerwrapper)
 add_subdirectory(daemon)
 add_subdirectory(scheduler)
 add_subdirectory(services)
 
 if(NOT DEFINED BUILD_EXPIRIMENTAL)
     message(SEND_ERROR "Cmake build is experimental and should not be used")
+    message("")
+    message("The following things are known not to be done")
+    message("    install binaries and headers")
+    message("    Create cmake install configuration")
+    message("    icecc-create-env")
+    message("    build on OSX")
+    message("    tests")
+    message("")
+    message("There are likely more")
 endif()
