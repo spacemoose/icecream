@@ -35,6 +35,7 @@ add_executable(icecc
     safeguard.cpp
     util.cpp
     util.h
+    $<TARGET_OBJECTS:md5>
 )
 
 target_compile_definitions(icecc
@@ -42,5 +43,5 @@ target_compile_definitions(icecc
     "-DPLIBDIR=\"${CMAKE_INSTALL_PREFIX}/libexec/icecc\"")
 
 target_link_libraries(icecc
-  services
+    services
 )

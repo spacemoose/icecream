@@ -63,7 +63,7 @@ matrix:
       - export PATH="${PWD}/bin:$PATH"
       - popd
       - cmake -DBUILD_EXPIRIMENTAL=true ..
-      - make -j 4
+      - make -j 4 VERBOSE=1
       - echo "tests not yet attempted"
   allow_failures:
   - compiler: clang
