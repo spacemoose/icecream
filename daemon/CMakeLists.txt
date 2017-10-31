@@ -28,6 +28,7 @@ add_executable(iceccd
   serve.h
   workit.cpp
   workit.h
+  $<TARGET_OBJECTS:md5>
 )
 
 target_link_libraries(iceccd

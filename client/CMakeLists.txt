@@ -19,14 +19,18 @@
 #     icecc-create-env
 #    icecc-create-env.in
 
+#todo - move this to a new location
+add_library(md5 OBJECT
+    md5.c
+    md5.h
+)
+    
 add_executable(icecc
     arg.cpp
     client.h
     cpp.cpp
     local.cpp
     main.cpp
-    md5.c
-    md5.h
     remote.cpp
     safeguard.cpp
     util.cpp

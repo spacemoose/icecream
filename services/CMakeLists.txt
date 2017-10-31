@@ -36,7 +36,7 @@ add_library(services STATIC
 target_link_libraries(services
     PRIVATE
         LZO::lzo
-        c)
+        dl)
         
 if(Libcap-ng_FOUND)
   target_link_libraries(services
