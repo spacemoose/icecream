@@ -14,34 +14,6 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-
-#todo latter: - this is needed before tests
-#     icecc-create-env
-#    icecc-create-env.in
-
-#todo - move this to a new location
-add_library(md5 OBJECT
-    md5.c
-    md5.h
-)
-    
-add_executable(icecc
-    arg.cpp
-    client.h
-    cpp.cpp
-    local.cpp
-    main.cpp
-    remote.cpp
-    safeguard.cpp
-    util.cpp
-    util.h
-    $<TARGET_OBJECTS:md5>
-)
-
-target_compile_definitions(icecc
-  PRIVATE
-    "-DPLIBDIR=\"${CMAKE_INSTALL_PREFIX}/libexec/icecc\"")
-
-target_link_libraries(icecc
-    services
-)
+add_executable(compilerwrapper
+    compilerwrapper.cpp
+    )
