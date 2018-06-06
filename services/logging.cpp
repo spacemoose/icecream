@@ -210,7 +210,7 @@ void close_debug()
     logfile_trace = logfile_info = logfile_warning = logfile_error = 0;
 }
 
-/* Flushes all ostreams used for debug messages.  You need to call
+/* Flushes all ostreams used for debug messages.  Youd need to call
    this before forking.  */
 void flush_debug()
 {
