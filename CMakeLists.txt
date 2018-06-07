@@ -14,6 +14,19 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
+message("Cmake build is experimental may not be usable yet.  Your help and feedback are")
+message("appreciated.\n")
+message("The following things are known not to be finsihed/working in this build")
+message("Using this build implies you are working to fix something in this list")
+message("    install binaries and headers")
+message("    Create cmake install configuration")
+message("    icecc-create-env")
+message("    build on OSX")
+message("    tests")
+message("    building downstream projects (icemon)")
+message("")
+message("There are likely more")
+
 cmake_minimum_required(VERSION 3.7)
 
 project(icecc LANGUAGES CXX C)
@@ -30,7 +43,8 @@ if(NOT DEFINED BINDIR)
     set(BINDIR "${CMAKE_INSTALL_PREFIX}/bin")
 endif()
 
-find_package(Libcap-ng)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(CAPNG REQUIRED libcap-ng)
 find_package(LZO REQUIRED)
 find_package(TAR REQUIRED)
 
@@ -43,18 +57,3 @@ add_subdirectory(compilerwrapper)
 add_subdirectory(daemon)
 add_subdirectory(scheduler)
 add_subdirectory(services)
-
-if(NOT DEFINED BUILD_EXPIRIMENTAL)
-    message(SEND_ERROR "Cmake build is experimental and should not be used")
-else()
-    message("The following things are known not to be finsihed/working in this build")
-    message("Using this build implies you are working to fix something in this list")
-    message("    install binaries and headers")
-    message("    Create cmake install configuration")
-    message("    icecc-create-env")
-    message("    build on OSX")
-    message("    tests")
-    message("    building downstream projects (icemon)")
-    message("")
-    message("There are likely more")
-endif()

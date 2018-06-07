@@ -1,11 +1,16 @@
 1.2 (in progress)
+<<<<<<< HEAD
+=======
+C++11 is required
+ - more logging, entries now have date as well as timestamp.
+>>>>>>> Used pkgconfig to find libcap-ng
 
 1.1
  - revert "Add load control for preprocessing"
  - better handle clang arugments with spaces
  - remove "crashme" command from scheduler
  - better logging around exception 30
- 
+
 1.1rc3
  - Fix broken pipe race condition
  - Better error handling
@@ -34,7 +39,7 @@
  - support color diagnostics if possible
  - fix several crashes
  - clean up and improve documentation
- - move icecc-create-env to bindir. 
+ - move icecc-create-env to bindir.
  - Try to use only the best available scheduler
  - make daemon port configurable
  - USE_SCHEDULER now accepts host:port to change ports
@@ -206,21 +211,21 @@
 
 0.9.3 (926474):
  - Fix FTBFS with GCC 4.4
- - Explicitly set group ownership and permissions on the base cache 
-   dir and target dir in case root has a umask of e.g. 0077. 
+ - Explicitly set group ownership and permissions on the base cache
+   dir and target dir in case root has a umask of e.g. 0077.
    Otherwise nobody user won't be ableto untar.
  - make sure that a too strict umask doesn't ruin the game
    fixes https://bugzilla.novell.com/show_bug.cgi?id=446329
  - some create-env fixes for fedora
 
 0.9.2 (879112):
- - On OS X, append the release number to Darwin (Darwin8 for Tiger, Darwin9 for Leopard) 
+ - On OS X, append the release number to Darwin (Darwin8 for Tiger, Darwin9 for Leopard)
    as their icecream environments are not compatible
- - Add accessor for the hostname of the scheduler, so that we can show it in a tooltip in 
+ - Add accessor for the hostname of the scheduler, so that we can show it in a tooltip in
    icemon in the future.
  - Only localize job if we find -Wa,.*-a[a-z]*= in an argument
  - also add accessor for network name
- - if called as "icecc" (i.e., not through a symlink) and the first argument starts with a slash, 
+ - if called as "icecc" (i.e., not through a symlink) and the first argument starts with a slash,
    use that as the command to run.
 
 0.9.1 (822102):
@@ -237,7 +242,7 @@
       BSD (thus the scheduler never finds a matching compile server, or
       wrongly directs a non-Linux client to use a Linux compile server)
     - fixing the init script
-    - patch by Tais M. Hansen to ignore directories 
+    - patch by Tais M. Hansen to ignore directories
     - compile on OS X 10.5
     - some preparations for rsync support
     - fix valgrind warning
@@ -245,16 +250,16 @@
     - don't kick daemons that run as user, just don't give them
       any jobs. this helps the people that just don't trust the
       daemon to be able to at least send out jobs
-    - remove the now pointless "runasuser" option. it will just 
+    - remove the now pointless "runasuser" option. it will just
       not accept any jobs then
     - add log message when the local daemon hangs again
     - accept TERM=dumb as well
     - implement support for scheduling local non-compile jobs.
-    
+
       For example: you can add a symlink named "meinproc4" pointing
       to icecc to your path, and it will automatically schedule
-      the job and then invoke meinproc4 on it locally. 
-    
+      the job and then invoke meinproc4 on it locally.
+
       the advantage is that you can use cmake -j50 without having
       to worry that there are going to be 50 meinproc jobs killing
       your machine.
@@ -353,7 +358,7 @@
 0.7.12 (r581454):
         - fixing error handling when scheduler restarts
         - do not waitpid before we're sure we read all of g++'s
-          output otherwise g++ waits for us to read and we're 
+          output otherwise g++ waits for us to read and we're
           waiting for g++ to finish -> deadlock
 
 0.7.11 (r581076):
@@ -401,7 +406,7 @@
 	  files
 
 0.7.8 (r579795):
-        - fd leak fix, which caused a deadlock under 
+        - fd leak fix, which caused a deadlock under
           certain conditions
         - rework some FreeBSD patches that caused problems
 	- fix race between select and SIGCHILD
@@ -429,7 +434,7 @@
 0.7.4 (r559927):
 	- Add -fpreprocessed argument
 	- Fix daemons getting stuck after a while with 100% CPU
-	- fix for kubuntu where libs are deeply nested 
+	- fix for kubuntu where libs are deeply nested
           such as /lib/tls/i686/cmov/libc.so.6
 	- find the compiler even though icecc wasn't in the path
 	- fix deletion of old environments
@@ -445,36 +450,36 @@
 	- corrected icecc --help output
 	- handle local icecream load correctly
 	- reduce the number of load updates from daemon to scheduler
-	- early launch the compiler even before the whole preprocessed 
+	- early launch the compiler even before the whole preprocessed
           file has been received
 	- handle low-latency networks better
 	- builtin colorgcc
 	- let the daemon schedule local load even without scheduler (important
 	  for multi processor machines)
 
-0.7.2 (r549574): 
+0.7.2 (r549574):
 	- split out libicecream-devel for the monitor
 	- introducing ICECC_PREFERRED_HOST (=mybigfathost) to let the scheduler
           ignore all rules - this is meant to be a debugging aid
 	- fix network performance between client and local daemon
-	- replaced create-env with icecc --build-native (respecting the user's 
+	- replaced create-env with icecc --build-native (respecting the user's
           $PATH by default)
 
-0.7.1 (r548846):	
+0.7.1 (r548846):
 	- Monitor is an extra package now
 	- don't make non-existant cross compilers fatal, but just use
           the other environments in ICECC_VERSION
 	- always handle aborted syscalls
 	- update minilzo
 	- never exit() or return from fork()'ed code paths,
-	 
+
 0.7.0 (r547196):
         - WARNING: the protocol is not compatible with earlier versions, old clients
           will refuse to connect, so update the full farm
 
 	- protocol reworked to no longer require a client->scheduler connection
            (the daemon will proxy it all)
-        - all local jobs are now scheduled by the local daemon to make sure 
+        - all local jobs are now scheduled by the local daemon to make sure
           multiprocessor machines are handling as many jobs as they have jobs
           configured (# processors). They used to be "scheduled" by lock file
 	- fixed grave bug that removed all daemon environments when the cache
@@ -486,4 +491,3 @@
 	  to it
 	- create-env will create .tar.gz now - the client allows environments to be
 	  .tar, .tar.bz2 and .tar.gz
-	
