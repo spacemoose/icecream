@@ -1,9 +1,3 @@
-script:
-  - ./autogen.sh
-  - ./configure --prefix=$PWD/_inst
-  - make
-  - cat config.h
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then make test; fi
 
 env: # important, even though empty!
 
